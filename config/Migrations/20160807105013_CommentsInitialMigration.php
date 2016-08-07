@@ -1,22 +1,12 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CroogoCommentsInitialMigration extends AbstractMigration
+class CommentsInitialMigration extends AbstractMigration
 {
-
-    public $autoId = false;
-
     public function up()
     {
-        $table = $this->table('comments');
-        $table
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 20,
-                'null' => false,
-            ])
-            ->addPrimaryKey(['id'])
+
+        $this->table('comments')
             ->addColumn('parent_id', 'integer', [
                 'default' => null,
                 'limit' => 20,
@@ -73,12 +63,12 @@ class CroogoCommentsInitialMigration extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('status', 'boolean', [
-                'default' => 0,
+                'default' => false,
                 'limit' => null,
                 'null' => false,
             ])
             ->addColumn('notify', 'boolean', [
-                'default' => 0,
+                'default' => false,
                 'limit' => null,
                 'null' => false,
             ])
@@ -129,7 +119,6 @@ class CroogoCommentsInitialMigration extends AbstractMigration
                 ]
             )
             ->create();
-
     }
 
     public function down()
